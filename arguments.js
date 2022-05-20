@@ -20,18 +20,26 @@ function sum(...args){
 console.log(sum(1, 2, 3, 4, 5));
 
 
-Function.prototype.myBind = function(context){
-    const args = Array.from(arguments).slice(1);
-    const that = this; 
+// Function.prototype.myBind = function(context){
+//     const args = Array.from(arguments).slice(1);
+//     const that = this; 
 
-    return function () {
-        const callArgs= Array.from(arguments);
-        return that.apply(context, args.concat(callArgs));
+//     return function () {
+//         const callArgs= Array.from(arguments);
+//         return that.apply(context, args.concat(callArgs));
 
+//     }
+
+// };
+
+Function.prototype.myBind = function(context, ...args){
+
+    const that = this;
+    return function(...callArgs) {
+
+        return that.apply(context, args.concat(callArgs))
     }
-
-};
-
+}
 class Cat {
     constructor(name) {
       this.name = name;
