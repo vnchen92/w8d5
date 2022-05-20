@@ -95,24 +95,17 @@
 //   notMarkovSays("meow", "me");
 
 function curriedSum(numArgs){
-    debugger
     let numbers = [];
-    function _curriedSum(num1) {
+    return function _curriedSum(num1) {
         numbers.push(num1);
         if (numbers.length === numArgs) {
-            return sum(numbers);
+            console.log(numbers.reduce((acc, el) => {
+                return acc + el;
+            }))
+        } else {
+            return _curriedSum;
         }
     }
-    return _curriedSum;
-}
-
-function sum(){
-    let total = 0;
-    let args = Array.from(arguments);
-    args.forEach( element => {
-        total += element;
-    })
-    return total;
 }
 
 // const total = curriedSum(4);
